@@ -15,11 +15,11 @@ class Shloka {
 
   factory Shloka.fromJson(Map<String, dynamic> json) {
     return Shloka(
-      num: json['num'],
-      shloka: json['shloka'],
-      meaning: json['meaning'],
-      synonyms: json['Synonyms'],
-      purport: json['Purport'],
+      num: json['num'] ?? '',
+      shloka: json['shloka'] ?? '',
+      meaning: json['meaning'] ?? '',
+      synonyms: json['Synonyms'] ?? '',
+      purport: json['Purport'] ?? '',
     );
   }
 }

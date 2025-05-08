@@ -3,8 +3,10 @@
 import 'dart:convert';
 
 import 'package:e_book_app/Helpers/utilities.dart';
+import 'package:e_book_app/Screens/shlok_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../Helpers/common_widgets.dart';
 
@@ -17,15 +19,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.orangeColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: AppColors.orangeColor,
         surfaceTintColor: Colors.transparent,
-        backgroundColor: AppColors.primaryColor,
         centerTitle: true,
         title: CommonWidgets().textWidget(
             text: "श्रीमद भगवद गीता",
             size: 25.0,
+            color: AppColors.primaryColor,
             weight: FontWeight.bold,
             align: TextAlign.center),
       ),
@@ -43,9 +46,11 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final key = chapters.keys.elementAt(index);
                 final value = chapters[key];
-                return ListTile(
-                  title: Text(key),
-                  subtitle: Text(value.toString()),
+                return GestureDetector(
+                  onTap: () {
+                    Get.to(ShlokaList(chapter: "${index + 1}".toString()));
+                  },
+                  child: listWidget(shlokname: "अध्याय ${key}"),
                 );
               },
             );
@@ -62,19 +67,20 @@ class HomePage extends StatelessWidget {
       height: 50,
       margin: EdgeInsets.all(15),
       decoration: BoxDecoration(
-          border: Border.all(), borderRadius: BorderRadius.circular(15)),
+          border: Border.all(color: AppColors.primaryColor, width: 2),
+          borderRadius: BorderRadius.circular(15)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CircleAvatar(
             radius: 5,
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.primaryColor,
           ),
           CommonWidgets()
               .textWidget(text: shlokname, size: 20.0, weight: FontWeight.w700),
           CircleAvatar(
             radius: 5,
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.primaryColor,
           ),
         ],
       ),

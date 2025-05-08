@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
     Timer(
       Duration(seconds: 5),
       () {
-        Get.to(HomePage());
+        Get.off(HomePage());
       },
     );
     super.initState();
